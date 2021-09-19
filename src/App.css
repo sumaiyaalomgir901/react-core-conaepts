@@ -42,3 +42,16 @@
 .btn {
   margin-right: 10px;
 }
+.userarea {
+  width: 90%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+}
+.user {
+  border: 3px solid black;
+  border-radius: 20px;
+  background-color: lightslategray;
+  color: white;
+}

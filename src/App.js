@@ -1,11 +1,12 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
   return (
     <div className="App">
       <Counter></Counter>
+      <ExternalUsers></ExternalUsers>
     </div>
   );
 }
@@ -26,6 +27,33 @@ function Counter() {
         Increase
       </button>
       <button onClick={handledec}>Decrease</button>
+    </div>
+  );
+}
+function ExternalUsers() {
+  const [users, setUsers] = useState([]);
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((res) => res.json())
+      .then((data) => setUsers(data));
+  }, []);
+  return (
+    <div>
+      <h1>External Users: {users.length}</h1>
+      <div className="userarea">
+        {users.map((user) => (
+          <User name={user.name} email={user.email} phn={user.phone}></User>
+        ))}
+      </div>
+    </div>
+  );
+}
+function User(props) {
+  return (
+    <div className="user">
+      <h3>Name: {props.name}</h3>
+      <h4>Email: {props.email}</h4>
+      <h4>Phone: {props.phn}</h4>
     </div>
   );
 }
